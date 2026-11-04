@@ -1,0 +1,34 @@
+dataset: financial_transactions
+
+rules:
+  - id: transaction_id_required
+    column: transaction_id
+    type: not_null
+
+  - id: account_id_required
+    column: account_id
+    type: not_null
+
+  - id: amount_positive
+    column: amount
+    type: greater_than
+    value: 0
+
+  - id: currency_allowed
+    column: currency
+    type: allowed_values
+    values: [GBP, USD, EUR]
+
+  - id: status_allowed
+    column: status
+    type: allowed_values
+    values: [COMPLETED, PENDING, FAILED]
+
+  - id: transaction_date_valid
+    column: transaction_date
+    type: valid_date
+    format: yyyy-MM-dd
+
+  - id: transaction_id_unique
+    column: transaction_id
+    type: unique
